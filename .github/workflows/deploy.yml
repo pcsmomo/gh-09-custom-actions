@@ -12,7 +12,7 @@ jobs:
       - name: Load & cache dependencies
         id: cache-deps
         uses: ./.github/actions/cached-deps   # must be absolute path
-        # uses: maxacademy1/my-action # github repo
+        # uses: maxacademy1/my-action # github repo, then it won't need the 'Get code' step
         with:
           caching: 'false'
       - name: Output information
@@ -68,5 +68,7 @@ jobs:
   information:
     runs-on: ubuntu-latest
     steps:
+      - name: Get code
+        uses: actions/checkout@v3
       - name: Run custom action
         uses: ./.github/actions/deploy-s3-javascript
